@@ -1,5 +1,6 @@
 import Emote from './emote';
 import MentionHighlight from './mentionHighlight';
+import CheckAuthorLength from './checkAuthorName';
 
 /**
  * Binds chat mutation observer and listen for new chat messages.
@@ -34,6 +35,7 @@ export default function chatObserver()
 
                     MentionHighlight($node);
                     Emote.emoteCheck($node);
+                    CheckAuthorLength($node);
                 });
             }
         });
