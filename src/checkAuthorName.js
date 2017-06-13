@@ -9,7 +9,7 @@ export default function CheckAuthorLength(node)
     var authorName = $(node).find('#author-name').text();
 
     /* Temp fix */
-    if (authorname === null) {
+    if (authorName === null) {
         return false;
     }
 
