@@ -8,9 +8,11 @@ export default class AlwaysScrollDown
      */
     static init()
     {
-        if ($('.iptv-scrolldown-wrapper').length) {
-            $('.iptv-scrolldown-wrapper').remove();
-        };
+        const scrolldownWrapper = $('.iptv-scrolldown-wrapper');
+
+        if (scrolldownWrapper.length) {
+            scrolldownWrapper.remove();
+        }
 
         const scrollWrapper = document.createElement('div');
 
@@ -35,7 +37,9 @@ export default class AlwaysScrollDown
             AlwaysScrollDown.toggleScrollDown();
         });
 
-        setInterval(function () {
+        clearInterval(AlwaysScrollDown.interval);
+
+        AlwaysScrollDown.interval = setInterval(function () {
             if (AlwaysScrollDown.scrollDown === true) {
                 $('#item-scroller').scrollTop(999999999);
             }
@@ -68,7 +72,7 @@ export default class AlwaysScrollDown
             characterData: false,
             subtree: false,
             attributeFilter: ['sidebar-collapsed']
-        }
+        };
 
         const addObserver = setInterval(() => {
             if ($(watchPage).length) {
@@ -122,7 +126,7 @@ export default class AlwaysScrollDown
             return;
         }
 
-        $('#item-scroller').on('mousewheel DOMMouseScroll', function (event) {
+        $('#item-scroller').on('mousewheel DOMMouseScroll', function () {
             AlwaysScrollDown.toggleScrollDown(false);
         });
 
@@ -170,3 +174,4 @@ export default class AlwaysScrollDown
 };
 
 AlwaysScrollDown.scrollDown = true;
+AlwaysScrollDown.interval = null;
